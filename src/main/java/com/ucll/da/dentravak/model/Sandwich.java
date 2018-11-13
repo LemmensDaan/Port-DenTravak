@@ -1,5 +1,6 @@
 package com.ucll.da.dentravak.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,5 +23,5 @@ public class Sandwich {
     private @Id @GeneratedValue Long id;
     private String name;
     private @OneToMany(mappedBy = "sandwich") List<Ingredient> ingredients;
-    private double price;
+    private BigDecimal price;
 }
