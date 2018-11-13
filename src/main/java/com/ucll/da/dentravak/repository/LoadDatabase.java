@@ -1,5 +1,6 @@
 package com.ucll.da.dentravak.repository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ class LoadDatabase implements ApplicationRunner {
 
         ingredients = ingredientRepository.saveAll(ingredients);
 
-        sandwichRepository.save(Sandwich.builder().name("Name").ingredients(ingredients).price(3.0).build());
-        sandwichRepository.save(Sandwich.builder().name("Name2").ingredients(ingredients).price(3.2).build());
+        sandwichRepository.save(Sandwich.builder().name("Name").ingredients(ingredients).price(new BigDecimal(3)).build());
+        sandwichRepository.save(Sandwich.builder().name("Name2").ingredients(ingredients).price(new BigDecimal(3.2)).build());
     }
 }
