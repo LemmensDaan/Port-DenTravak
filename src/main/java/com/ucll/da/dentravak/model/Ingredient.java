@@ -1,11 +1,13 @@
 package com.ucll.da.dentravak.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Ingredient {
-
     private @Id @GeneratedValue Long id;
     private String name;
-    private @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "fk_sandwich") Sandwich sandwich;
+    private @ManyToMany(mappedBy = "ingredients") @JsonBackReference List<Sandwich> sandwiches;
 }
