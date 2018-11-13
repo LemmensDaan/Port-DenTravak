@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Start-Class: com.ucll.da.dentravak.Application
+Main-Class: org.springframework.boot.loader.JarLauncher
+
