@@ -7,6 +7,11 @@ buildscript {
     }
 }
 
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'java'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -25,7 +30,13 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+lombok {
+    sha256 = ""
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.h2database:h2")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
