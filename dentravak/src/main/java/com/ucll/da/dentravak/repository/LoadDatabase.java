@@ -4,19 +4,21 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ucll.da.dentravak.model.Ingredient;
-import com.ucll.da.dentravak.model.Sandwich;
+import com.ucll.da.dentravak.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
+import  java.time.LocalDateTime;
 @Component
 class LoadDatabase implements ApplicationRunner {
 
     @Autowired
     private SandwichRepository sandwichRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     private IngredientRepository ingredientRepository;
@@ -41,5 +43,8 @@ class LoadDatabase implements ApplicationRunner {
 
         smoske.setIngredients(kaasEnHesp);
         sandwichRepository.save(smoske);
+
+        Order order = Order.builder().name("Smoske").price(new BigDecimal(3.5)).mobilePhoneNumber("0487\\/123456").breadType(BreadType.BOTERHAMMEKES).creationDate(LocalDateTime.now()).build();
+        orderRepository.save(order);
     }
 }

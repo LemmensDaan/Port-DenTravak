@@ -25,5 +25,5 @@ public class Sandwich {
     private @Id @GeneratedValue Long id;
     private String name;
     private BigDecimal price;
-    private @ManyToMany @JsonManagedReference List<Ingredient> ingredients;
+    private @ManyToMany List<Ingredient> ingredients;
 }
