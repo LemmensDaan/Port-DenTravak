@@ -86,7 +86,10 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "node-sass": "^4.1.1",
+    "sass-loader": "^3.2.3",
+    "style-loader": "^0.13.1"
   },
   "engines": {
     "node": ">= 4.0.0",
