@@ -24,20 +24,22 @@ class LoadDatabase implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Sandwich sandwich = Sandwich.builder().name("Sandwich one").price(new BigDecimal(3)).build();
-        Sandwich sandwich2 = Sandwich.builder().name("Sandwich two").price(new BigDecimal(3.3)).build();
+        Sandwich gezond = Sandwich.builder().name("Gezond").price(new BigDecimal(4.00)).build();
+        Sandwich smoske = Sandwich.builder().name("Smoske").price(new BigDecimal(3.50)).build();
 
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(Ingredient.builder().name("Ingredient one").build());
-        ingredients.add(Ingredient.builder().name("Ingredient two").build());
-        ingredients.add(Ingredient.builder().name("Ingredient three").build());
+        List<Ingredient> kaasEnHesp = new ArrayList<>();
+        List<Ingredient> groentjes = new ArrayList<>();
+        groentjes.add(Ingredient.builder().name("Groentjes").build());
+        kaasEnHesp.add(Ingredient.builder().name("Kaas").build());
+        kaasEnHesp.add(Ingredient.builder().name("Hesp").build());
 
-        ingredientRepository.saveAll(ingredients);
+        ingredientRepository.saveAll(kaasEnHesp);
+        ingredientRepository.saveAll(groentjes);
 
-        sandwich.setIngredients(ingredients);
-        sandwichRepository.save(sandwich);
+        gezond.setIngredients(groentjes);
+        sandwichRepository.save(gezond);
 
-        sandwich2.setIngredients(ingredients);
-        sandwichRepository.save(sandwich2);
+        smoske.setIngredients(kaasEnHesp);
+        sandwichRepository.save(smoske);
     }
 }
