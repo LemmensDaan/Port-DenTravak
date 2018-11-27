@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder.Default;
 
 @Builder
 @Data
@@ -26,6 +27,7 @@ public class Order {
     private String name;
     private BigDecimal price;
     private String mobilePhoneNumber;
-    private LocalDateTime creationDate;
+    @Default
+    private LocalDateTime creationDate = LocalDateTime.now();
     private @ManyToOne Sandwich sandwich;
 }
