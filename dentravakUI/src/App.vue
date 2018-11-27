@@ -16,8 +16,11 @@
 
         <div id="navbarBasic" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item">
+            <a class="navbar-item" href="/sandwich_overview">
               Sandwiches
+            </a>
+            <a class="navbar-item" href="/create_order">
+              Create Order
             </a>
           </div>
         </div>

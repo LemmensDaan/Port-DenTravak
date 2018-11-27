@@ -11,12 +11,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/home',
-      name: 'Home',
+      path: '/sandwich_overview',
+      name: 'Sandwich Overview',
       component: SandwichTable
     },
     {
-      path: '/order',
+      path: '/create_order',
       name: 'Order Form',
       component: OrderForm
     }

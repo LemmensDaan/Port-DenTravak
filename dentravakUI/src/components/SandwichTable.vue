@@ -1,7 +1,71 @@
 <template>
-  <div class="container" style="margin-top: 30px;">
+  <div
+    class="container"
+    style="margin-top: 30px;"
+  >
     <div class="notification">
-      <b-table :data="data" :columns="columns"></b-table>
+      <b-table
+        :data="isEmpty ? [] : data"
+        :bordered="isBordered"
+        :striped="isStriped"
+        :narrowed="isNarrowed"
+        :hoverable="isHoverable"
+        :loading="isLoading"
+        :focusable="isFocusable"
+        :mobile-cards="hasMobileCards"
+      >
+        <template slot-scope="props">
+          <b-table-column
+            field="id"
+            label="ID"
+            width="40"
+            numeric
+          >{{ props.row.id }}</b-table-column>
+          <b-table-column
+            field="name"
+            label="Name"
+          >{{ props.row.name }}</b-table-column>
+          <b-table-column
+            field="price"
+            label="Price"
+          >{{ props.row.price }}</b-table-column>
+          <b-table-column
+            field="ingredients"
+            label="Ingredients"
+          >{{ props.row.ingredients }}</b-table-column>
+
+          <b-table-column
+            label="Actions"
+            centered
+          >
+            <button
+              class="button is-small is-light"
+              @click="order(props.row)"
+            >
+              <b-icon
+                icon="plus-box"
+                type="is-success"
+                size="is-medium"
+              ></b-icon>
+            </button>
+          </b-table-column>
+        </template>
+
+        <template slot="empty">
+          <section class="section">
+            <div class="content has-text-grey has-text-centered">
+              <p>
+                <b-icon
+                  icon="emoticon-sad"
+                  size="is-large"
+                >
+                </b-icon>
+              </p>
+              <p>Nothing here.</p>
+            </div>
+          </section>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
@@ -10,38 +74,42 @@
 export default {
   data () {
     return {
-      data: [
-        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
-      ],
-      columns: [
-        {
-          field: 'id',
-          label: 'ID',
-          width: '40',
-          numeric: true
-        },
-        {
-          field: 'first_name',
-          label: 'First Name'
-        },
-        {
-          field: 'last_name',
-          label: 'Last Name'
-        },
-        {
-          field: 'date',
-          label: 'Date',
-          centered: true
-        },
-        {
-          field: 'gender',
-          label: 'Gender'
+      data: [],
+      isEmpty: false,
+      isBordered: false,
+      isStriped: false,
+      isNarrowed: false,
+      isHoverable: false,
+      isFocusable: false,
+      isLoading: false,
+      hasMobileCards: true
+    }
+  },
+  mounted () {
+    let self = this
+    fetch(location.protocol + '//' + location.hostname + ':8080/sandwiches')
+      .then(response => { return response.json() })
+      .then(json => {
+        self.data = json
+        self.data.forEach(element => {
+          element.price = '€ ' + element.price
+
+          let ingredients = ''
+          element.ingredients.forEach(ingredient => {
+            ingredients += ingredient.name + ', '
+          })
+          ingredients = ingredients.slice(0, -2)
+          element.ingredients = ingredients
+        })
+
+        if (self.data.length === 0) {
+          self.isEmpty = true
         }
-      ]
+      })
+  },
+  methods: {
+    order (e) {
+      window.location = location.protocol + '//' + location.hostname + ':8081/create_order?sandwich=' + e.id
     }
   }
 }
