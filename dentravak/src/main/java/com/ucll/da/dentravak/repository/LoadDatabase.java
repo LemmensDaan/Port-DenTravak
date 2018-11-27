@@ -45,6 +45,7 @@ class LoadDatabase implements ApplicationRunner {
         sandwichRepository.save(smoske);
 
         Order order = Order.builder().name("Smoske").price(new BigDecimal(3.5)).mobilePhoneNumber("0487\\/123456").breadType(BreadType.BOTERHAMMEKES).creationDate(LocalDateTime.now()).build();
+        order.setSandwich(smoske);
         orderRepository.save(order);
     }
 }

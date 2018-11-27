@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,5 @@ public class Sandwich {
     private String name;
     private BigDecimal price;
     private @ManyToMany List<Ingredient> ingredients;
+    private @OneToMany(mappedBy = "sandwich") @JsonBackReference List<Order> orders;
 }
