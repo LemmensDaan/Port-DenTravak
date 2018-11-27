@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import  java.time.LocalDateTime;
+import java.time.LocalDateTime;
+
 @Component
 class LoadDatabase implements ApplicationRunner {
 
@@ -44,7 +45,7 @@ class LoadDatabase implements ApplicationRunner {
         smoske.setIngredients(kaasEnHesp);
         sandwichRepository.save(smoske);
 
-        Order order = Order.builder().name("Smoske").price(new BigDecimal(3.5)).mobilePhoneNumber("0487\\/123456").breadType(BreadType.BOTERHAMMEKES).build();
+        Order order = Order.builder().mobilePhoneNumber("0487\\/123456").breadType(BreadType.BOTERHAMMEKES).build();
         order.setSandwich(smoske);
         orderRepository.save(order);
     }
