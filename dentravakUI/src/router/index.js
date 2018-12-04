@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import SandwichTable from '@/components/SandwichTable'
+import OrderTable from '@/components/OrderTable'
 import OrderForm from '@/components/OrderForm'
 import Buefy from 'buefy'
 
@@ -14,6 +15,11 @@ export default new Router({
       path: '/sandwich_overview',
       name: 'Sandwich Overview',
       component: SandwichTable
+    },
+    {
+      path: '/order_overview',
+      name: 'Order Overview',
+      component: OrderTable
     },
     {
       path: '/create_order',

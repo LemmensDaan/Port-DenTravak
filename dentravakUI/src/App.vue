@@ -1,25 +1,50 @@
 <template>
   <div id="app">
     <header>
-      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <nav
+        class="navbar is-primary"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div class="navbar-brand">
           <div class="navbar-item">
             <p>Vue.js</p>
           </div>
 
-          <div role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <div
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasic"
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </div>
         </div>
 
-        <div id="navbarBasic" class="navbar-menu">
+        <div
+          id="navbarBasic"
+          class="navbar-menu"
+        >
           <div class="navbar-start">
-            <a class="navbar-item" href="/sandwich_overview">
+            <a
+              class="navbar-item"
+              href="/sandwich_overview"
+            >
               Sandwiches
             </a>
-            <a class="navbar-item" href="/create_order">
+            <a
+              class="navbar-item"
+              href="/order_overview"
+            >
+              Orders
+            </a>
+            <a
+              class="navbar-item"
+              href="/create_order"
+            >
               Create Order
             </a>
           </div>
@@ -27,18 +52,6 @@
       </nav>
     </header>
     <main>
-      <section class="hero is-primary">
-        <div class="hero-body">
-          <div class="container">
-            <h1 class="title">
-              Sandwiches
-            </h1>
-            <h2 class="subtitle">
-              Overview
-            </h2>
-          </div>
-        </div>
-      </section>
       <router-view></router-view>
     </main>
   </div>

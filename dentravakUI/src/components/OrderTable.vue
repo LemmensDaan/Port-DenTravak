@@ -4,7 +4,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Sandwich
+            Order
           </h1>
           <h2 class="subtitle">
             Overview
@@ -35,33 +35,21 @@
               numeric
             >{{ props.row.id }}</b-table-column>
             <b-table-column
-              field="name"
-              label="Name"
-            >{{ props.row.name }}</b-table-column>
+              field="creationDate"
+              label="Date"
+            >{{ props.row.creationDate }}</b-table-column>
             <b-table-column
               field="price"
               label="Price"
             >{{ props.row.price }}</b-table-column>
             <b-table-column
-              field="ingredients"
-              label="Ingredients"
-            >{{ props.row.ingredients }}</b-table-column>
-
+              field="mobilePhoneNumber"
+              label="Mobile Phone"
+            >{{ props.row.mobilePhoneNumber }}</b-table-column>
             <b-table-column
-              label="Actions"
-              centered
-            >
-              <button
-                class="button is-small is-light"
-                @click="order(props.row)"
-              >
-                <b-icon
-                  icon="plus-box"
-                  type="is-success"
-                  size="is-medium"
-                ></b-icon>
-              </button>
-            </b-table-column>
+              field="sandwich"
+              label="Sandwich"
+            >{{ JSON.stringify(props.row.sandwich) }}</b-table-column>
           </template>
 
           <template slot="empty">
@@ -101,30 +89,14 @@ export default {
   },
   mounted () {
     let self = this
-    fetch(location.protocol + '//' + location.hostname + ':8080/sandwiches')
+    fetch(location.protocol + '//' + location.hostname + ':8080/orders')
       .then(response => { return response.json() })
       .then(json => {
         self.data = json
-        self.data.forEach(element => {
-          element.price = '€ ' + element.price
-
-          let ingredients = ''
-          element.ingredients.forEach(ingredient => {
-            ingredients += ingredient.name + ', '
-          })
-          ingredients = ingredients.slice(0, -2)
-          element.ingredients = ingredients
-        })
-
         if (self.data.length === 0) {
           self.isEmpty = true
         }
       })
-  },
-  methods: {
-    order (e) {
-      window.location = location.protocol + '//' + location.hostname + ':8081/create_order?sandwich=' + e.id
-    }
   }
 }
 </script>
