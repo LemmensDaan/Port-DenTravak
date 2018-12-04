@@ -39,10 +39,6 @@
               label="Date"
             >{{ props.row.creationDate }}</b-table-column>
             <b-table-column
-              field="price"
-              label="Price"
-            >{{ props.row.price }}</b-table-column>
-            <b-table-column
               field="mobilePhoneNumber"
               label="Mobile Phone"
             >{{ props.row.mobilePhoneNumber }}</b-table-column>

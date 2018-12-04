@@ -4,14 +4,12 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
-        classpath("se.transmode.gradle:gradle-docker:1.1")
     }
 }
 
 plugins {
     id 'com.google.cloud.tools.jib' version '0.10.0'
     id 'io.franzbecker.gradle-lombok' version '1.14'
-    id 'java'
 }
 
 apply plugin: 'java'
@@ -19,8 +17,6 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'docker'
-apply plugin: 'application'
 
 bootJar {
     baseName = 'gs-rest-service'
@@ -37,14 +33,6 @@ targetCompatibility = 1.8
 lombok {
     sha256 = ""
 }
-
-group = 'dentravak'
-mainClassName = 'com.ucll.da.dentravak.Application'
-
-distDocker {
-    exposePort 8080
-}
-
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
