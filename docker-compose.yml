@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  den-travak:
+    image: den-travak-app:0.0.1-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - 8234:8080
+    environment:
+      - spring.profiles.active=container
+  den-travak-ui:
+    image: docker-ui:latest
+    restart: unless-stopped
+    ports:
+      - 8235:8081
