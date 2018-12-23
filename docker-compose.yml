@@ -6,8 +6,6 @@ services:
     command: 
       - "--api" 
       - "--docker"
-      - "--consul"
-      - "--consul.endpoint=consul:8500"
     ports:
       - "8080:80"     # The HTTP port
     volumes:
@@ -21,16 +19,6 @@ services:
       - "traefik.port=8500"
       - "traefik.frontend.rule=PathPrefixStrip:/consul/"
       - "traefik.frontend.rule=PathPrefix:/ui/,/v1/"
-  den-travak:
-    image: den-travak-app:0.0.1-SNAPSHOT
-    restart: unless-stopped
-    ports:
-      - 8234:8080
-    labels:
-      - "traefik.port=8080"
-      - "traefik.frontend.rule=PathPrefixStrip:/den-travak/"
-    environment:
-      - spring.profiles.active=container
   recommendation:
     image: recommendation-app:0.0.1-SNAPSHOT
     restart: unless-stopped
@@ -41,3 +29,26 @@ services:
     labels:
       - "traefik.port=8082"
       - "traefik.frontend.rule=PathPrefixStrip:/recommendation/"
+  den-travak:
+    image: den-travak-app:0.0.1-SNAPSHOT
+    restart: unless-stopped
+    depends_on:
+      - recommendation
+    ports:
+      - 8234:8080
+    labels:
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=PathPrefixStrip:/den-travak/"
+    environment:
+      - spring.profiles.active=container
+  den-travak-ui:
+    build: dentravakUI/
+    image: den-travak-ui
+    restart: unless-stopped
+    depends_on:
+      - den-travak
+    ports:
+      - 8236:8081
+    labels:
+      - "traefik.port=8081"
+      - "traefik.frontend.rule=PathPrefixStrip:/den-travak-ui/"
