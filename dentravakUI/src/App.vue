@@ -43,7 +43,7 @@
             </a>
             <a
               class="navbar-item"
-              href="/den-travak-ui/index.html#/create_order
+              href="/den-travak-ui/index.html#/create_order"
             >
               Create Order
             </a>
