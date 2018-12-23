@@ -69,6 +69,6 @@ public class LunchController {
   }
 
   public Optional<URI> recommendationServiceUrl() {
-    return discoveryClient.getInstances("recommendation").stream().map(si -> si.getUri())).findFirst();
+    return discoveryClient.getInstances("recommendation").stream().map(si -> si.getUri()).findFirst();
   }
 }
