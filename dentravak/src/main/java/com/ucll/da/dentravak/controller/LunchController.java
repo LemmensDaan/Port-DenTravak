@@ -11,6 +11,7 @@ import com.ucll.da.dentravak.model.Sandwich;
 import com.ucll.da.dentravak.model.SandwichPreferences;
 import com.ucll.da.dentravak.repository.SandwichRepository;
 
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,6 +70,11 @@ public class LunchController {
   }
 
   public Optional<URI> recommendationServiceUrl() {
+    List<ServiceInstance> list = discoveryClient.getInstances("recommendation");
+    if (list != null && list.size() > 0) {
+      System.out.println(list.get(0).getUri());
+    }
+
     return discoveryClient.getInstances("recommendation").stream().map(si -> si.getUri()).findFirst();
   }
 }
