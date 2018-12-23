@@ -13,7 +13,7 @@ public class RecommendedItem {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
     private String emailAddress;
-    private UUID ratedItem;
+    private Long ratedItem;
     private float rating;
 
     public UUID getId() {
@@ -32,11 +32,11 @@ public class RecommendedItem {
         this.emailAddress = emailAddress;
     }
 
-    public UUID getRatedItem() {
+    public Long getRatedItem() {
         return ratedItem;
     }
 
-    public void setRatedItem(UUID ratedItem) {
+    public void setRatedItem(Long ratedItem) {
         this.ratedItem = ratedItem;
     }
 

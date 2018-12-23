@@ -1,14 +1,12 @@
 package be.ucll.da.recommendation.model;
 
-import java.util.UUID;
-
 public class Item {
     String content;
     public Item(String s) {
         content = s;
     }
 
-    public Item(UUID ratedItemId) {
+    public Item(Long ratedItemId) {
         this.content = ratedItemId.toString();
     }
 
