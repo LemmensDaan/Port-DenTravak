@@ -3,7 +3,11 @@ version: '3'
 services:
   traefik:
     image: traefik
-    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+    command: 
+      - "--api" 
+      - "--docker"
+      - "--consul"
+      - "--consul.endpoint=consul:8500"
     ports:
       - "8080:80"     # The HTTP port
     volumes:
@@ -33,7 +37,7 @@ services:
     depends_on:
       - consul
     ports:
-      - 8235:8081
+      - 8235:8082
     labels:
-      - "traefik.port=8081"
+      - "traefik.port=8082"
       - "traefik.frontend.rule=PathPrefix:/recommendation/"
