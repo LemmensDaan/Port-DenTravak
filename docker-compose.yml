@@ -28,7 +28,7 @@ services:
       - 8234:8080
     labels:
       - "traefik.port=8080"
-      - "traefik.frontend.rule=PathPrefix:/den-travak/"
+      - "traefik.frontend.rule=PathPrefixStrip:/den-travak/"
     environment:
       - spring.profiles.active=container
   recommendation:
@@ -40,4 +40,4 @@ services:
       - 8235:8082
     labels:
       - "traefik.port=8082"
-      - "traefik.frontend.rule=PathPrefix:/recommendation/"
+      - "traefik.frontend.rule=PathPrefixStrip:/recommendation/"
