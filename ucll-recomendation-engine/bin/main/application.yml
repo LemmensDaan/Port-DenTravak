@@ -3,11 +3,12 @@ spring:
     name: recommendation
   cloud:
     consul:
-      host: 193.191.177.8
+      host: consul
       port: 8500
       discovery:
         instanceId: ${spring.application.name}:${random.value}
         healthCheckPath: /health-check
         healthCheckInterval: 20s
+        preferipaddress: true
 server:
   port: 8082
