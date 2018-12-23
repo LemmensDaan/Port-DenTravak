@@ -64,17 +64,12 @@ public class LunchController {
   @GetMapping("/getpreferences/{emailAddress}")
   public SandwichPreferences getPreferences(@PathVariable String emailAddress)
       throws RestClientException, ServiceUnavailableException {
-    URI service = recommendationServiceUrl().map(s -> s.resolve("/recommendation/recommend/" + emailAddress))
+    URI service = recommendationServiceUrl().map(s -> s.resolve("/recommend/" + emailAddress))
         .orElseThrow(ServiceUnavailableException::new);
     return restTemplate.getForEntity(service, SandwichPreferences.class).getBody();
   }
 
   public Optional<URI> recommendationServiceUrl() {
-    List<ServiceInstance> list = discoveryClient.getInstances("recommendation");
-    if (list != null && list.size() > 0) {
-      System.out.println(list.get(0).getUri());
-    }
-
     return discoveryClient.getInstances("recommendation").stream().map(si -> si.getUri()).findFirst();
   }
 }
