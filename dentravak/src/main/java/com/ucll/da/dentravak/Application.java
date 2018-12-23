@@ -16,11 +16,10 @@ public class Application implements WebMvcConfigurer {
         SpringApplication.run(Application.class, args);
     }
 
-    
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
-}
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
