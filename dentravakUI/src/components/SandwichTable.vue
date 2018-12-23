@@ -101,7 +101,7 @@ export default {
   },
   mounted () {
     let self = this
-    fetch(location.protocol + '//' + location.hostname + ':8080/sandwiches')
+    fetch('http://193.191.177.8:10508/den-travak/sandwiches')
       .then(response => { return response.json() })
       .then(json => {
         self.data = json
@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     order (e) {
-      window.location = location.protocol + '//' + location.hostname + ':8081/create_order?sandwich=' + e.id
+      window.location = 'http://193.191.177.8:10508/den-travak-ui/index.html#/create_order?sandwich=' + e.id
     }
   }
 }

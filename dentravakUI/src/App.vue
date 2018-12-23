@@ -31,19 +31,19 @@
           <div class="navbar-start">
             <a
               class="navbar-item"
-              href="/sandwich_overview"
+              href="/den-travak-ui/index.html#/sandwich_overview"
             >
               Sandwiches
             </a>
             <a
               class="navbar-item"
-              href="/order_overview"
+              href="/den-travak-ui/index.html#/order_overview"
             >
               Orders
             </a>
             <a
               class="navbar-item"
-              href="/create_order"
+              href="/den-travak-ui/index.html#/create_order
             >
               Create Order
             </a>

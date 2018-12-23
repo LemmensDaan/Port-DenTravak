@@ -85,7 +85,7 @@ export default {
   },
   mounted () {
     let self = this
-    fetch(location.protocol + '//' + location.hostname + ':8080/orders')
+    fetch('http://193.191.177.8:10508/den-travak/orders')
       .then(response => { return response.json() })
       .then(json => {
         self.data = json

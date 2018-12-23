@@ -84,7 +84,7 @@ export default {
   methods: {
     onSubmit () {
       let self = this
-      fetch(location.protocol + '//' + location.hostname + ':8080/orders', {
+      fetch('http://193.191.177.8:10508/den-travak/orders', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -95,7 +95,7 @@ export default {
         console.log(self.$route.params.sandwich)
 
         if (request.status === 201) {
-          window.location = location.protocol + '//' + location.hostname + ':8081/order_overview'
+          window.location = 'http://193.191.177.8:10508/den-travak-ui/index.html#/order_overview'
         } else {
           alert('Failed to create.')
         }
@@ -104,7 +104,7 @@ export default {
   },
   mounted () {
     let self = this
-    fetch(location.protocol + '//' + location.hostname + ':8080/sandwiches')
+    fetch('http://193.191.177.8:10508/den-travak/sandwiches')
       .then(response => { return response.json() })
       .then(json => { self.sandwiches = json })
   }
