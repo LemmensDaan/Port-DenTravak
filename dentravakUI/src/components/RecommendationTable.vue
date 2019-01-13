@@ -3,7 +3,7 @@
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Sandwich</h1>
+          <h1 class="title">Recommendations</h1>
           <h2 class="subtitle">Overview</h2>
         </div>
       </div>
@@ -25,6 +25,7 @@
             <b-table-column field="name" label="Name">{{ props.row.name }}</b-table-column>
             <b-table-column field="price" label="Price">{{ props.row.price }}</b-table-column>
             <b-table-column field="ingredients" label="Ingredients">{{ props.row.ingredients }}</b-table-column>
+            <b-table-column field="rating" label="Rating">{{ props.row.rating }}</b-table-column>
 
             <b-table-column label="Actions" centered>
               <button class="button is-small is-light" @click="order(props.row)">
@@ -54,7 +55,7 @@ export default {
   data() {
     return {
       data: [],
-      isEmpty: false,
+      isEmpty: true,
       isBordered: false,
       isStriped: false,
       isNarrowed: false,
@@ -66,26 +67,39 @@ export default {
   },
   mounted() {
     let self = this;
-    fetch("http://193.191.177.8:10508/den-travak/sandwiches")
+    fetch(
+      "http://193.191.177.8:10508/den-travak/getpreferences/" + "idefix@ucll.be"
+    )
       .then(response => {
         return response.json();
       })
       .then(json => {
-        self.data = json;
-        self.data.forEach(element => {
-          element.price = "€ " + element.price;
+        let temp = json;
+        Object.keys(temp).forEach(key => {
+          let id = key;
+          let rating = temp[key];
 
-          let ingredients = "";
-          element.ingredients.forEach(ingredient => {
-            ingredients += ingredient.name + ", ";
-          });
-          ingredients = ingredients.slice(0, -2);
-          element.ingredients = ingredients;
+          fetch("http://193.191.177.8:10508/den-travak/sandwiches/" + id)
+            .then(response => {
+              return response.json();
+            })
+            .then(sandwich_json => {
+              let ingredients = "";
+              sandwich_json.ingredients.forEach(ingredient => {
+                ingredients += ingredient.name + ", ";
+              });
+              ingredients = ingredients.slice(0, -2);
+              sandwich_json.ingredients = ingredients;
+
+              sandwich_json.price = "€ " + sandwich_json.price;
+              sandwich_json.rating = rating;
+              self.data.push(sandwich_json);
+              self.data.sort(
+                (a, b) => parseFloat(b.rating) - parseFloat(a.rating)
+              );
+              self.isEmpty = false;
+            });
         });
-
-        if (self.data.length === 0) {
-          self.isEmpty = true;
-        }
       });
   },
   methods: {

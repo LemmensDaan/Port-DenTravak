@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <nav
-        class="navbar is-primary"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <div class="navbar-item">
             <p>Vue.js</p>
@@ -24,29 +20,12 @@
           </div>
         </div>
 
-        <div
-          id="navbarBasic"
-          class="navbar-menu"
-        >
+        <div id="navbarBasic" class="navbar-menu">
           <div class="navbar-start">
-            <a
-              class="navbar-item"
-              href="/den-travak-ui/index.html#/sandwich_overview"
-            >
-              Sandwiches
-            </a>
-            <a
-              class="navbar-item"
-              href="/den-travak-ui/index.html#/order_overview"
-            >
-              Orders
-            </a>
-            <a
-              class="navbar-item"
-              href="/den-travak-ui/index.html#/create_order"
-            >
-              Create Order
-            </a>
+            <a class="navbar-item" href="/den-travak-ui/index.html#/sandwich_overview">Sandwiches</a>
+            <a class="navbar-item" href="/den-travak-ui/index.html#/recommendations">Recommendations</a>
+            <a class="navbar-item" href="/den-travak-ui/index.html#/order_overview">Orders</a>
+            <a class="navbar-item" href="/den-travak-ui/index.html#/create_order">Create Order</a>
           </div>
         </div>
       </nav>
@@ -59,29 +38,32 @@
 
 <script>
 export default {
-  name: 'app'
-}
+  name: "app"
+};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Get all "navbar-burger" elements
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
+  const $navbarBurgers = Array.prototype.slice.call(
+    document.querySelectorAll(".navbar-burger"),
+    0
+  );
 
   // Check if there are any navbar burgers
   if ($navbarBurgers.length > 0) {
     // Add a click event on each of them
     $navbarBurgers.forEach(el => {
-      el.addEventListener('click', () => {
+      el.addEventListener("click", () => {
         // Get the target from the "data-target" attribute
-        const target = el.dataset.target
-        const $target = document.getElementById(target)
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
 
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle('is-active')
-        $target.classList.toggle('is-active')
-      })
-    })
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
+    });
   }
-})
+});
 </script>
 
 <style lang="scss">
@@ -152,16 +134,13 @@ $colors: (
     $twitter-invert
   )
 );
-
 // Links
 $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
-
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-
 h1 {
   font-size: 33px;
 }

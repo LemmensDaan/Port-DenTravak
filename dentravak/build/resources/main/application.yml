@@ -9,5 +9,6 @@ spring:
         instanceId: ${spring.application.name}:${random.value}
         healthCheckPath: /health-check
         healthCheckInterval: 20s
+        prefer-ip-address: true
 server:
   port: 8080

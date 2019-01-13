@@ -95,6 +95,8 @@ docs/_book
 # TODO: where does this rule come from?
 test/
 
+dist/
+
 ### Vuejs ###
 node_modules
 .DS_Store
