@@ -81,7 +81,8 @@ export default {
         if (request.status === 201) {
           self.rating.emailAddress = "idefix@ucll.be";
           self.rating.ratedItem = self.order.sandwich.id;
-          fetch("https://193.191.177.8:10508/recommendation/recommend", {
+          console.log(JSON.stringify(self.rating))
+          fetch("http://193.191.177.8:10508/recommendation/recommend", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -89,7 +90,7 @@ export default {
             },
             body: JSON.stringify(self.rating)
           }).then(request => {
-            if (request.status === 201 || request.status === 200) {
+            if (request.status === 200) {
               window.location =
                 "http://193.191.177.8:10508/den-travak-ui/index.html#/order_overview";
             } else {

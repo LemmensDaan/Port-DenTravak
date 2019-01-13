@@ -28,21 +28,30 @@ class LoadDatabase implements ApplicationRunner {
 
         Sandwich gezond = Sandwich.builder().name("Gezond").price(new BigDecimal(4.00)).build();
         Sandwich smoske = Sandwich.builder().name("Smoske").price(new BigDecimal(3.50)).build();
+        Sandwich brie_ = Sandwich.builder().name("Brie").price(new BigDecimal(3.50)).build();
 
         List<Ingredient> kaasEnHesp = new ArrayList<>();
         List<Ingredient> groentjes = new ArrayList<>();
+        List<Ingredient> brie = new ArrayList<>();
         groentjes.add(Ingredient.builder().name("Groentjes").build());
         kaasEnHesp.add(Ingredient.builder().name("Kaas").build());
         kaasEnHesp.add(Ingredient.builder().name("Hesp").build());
+        brie.add(Ingredient.builder().name("Brie").build());
+        brie.add(Ingredient.builder().name("Walnoten").build());
+        brie.add(Ingredient.builder().name("Honing").build());
 
         ingredientRepository.saveAll(kaasEnHesp);
         ingredientRepository.saveAll(groentjes);
+        ingredientRepository.saveAll(brie);
 
         gezond.setIngredients(groentjes);
         sandwichRepository.save(gezond);
 
         smoske.setIngredients(kaasEnHesp);
         sandwichRepository.save(smoske);
+
+        brie_.setIngredients(brie);
+        sandwichRepository.save(brie_);
 
         Order order = Order.builder().mobilePhoneNumber("0487123456").breadType(BreadType.BOTERHAMMEKES).build();
         order.setSandwich(smoske);
