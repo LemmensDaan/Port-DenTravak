@@ -4,23 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 public class RecommendedItem {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private UUID id;
+    private Long id;
     private String emailAddress;
     private Long ratedItem;
     private float rating;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
